@@ -8,7 +8,7 @@ import com.hotel0.util.DBUtil;
 public class HotelMain {
     public static void main(String[] args) {
         // 连接数据库
-        DBUtil name =new DBUtil("root","LIU1840135132","demo");
+        DBUtil name = new DBUtil("root", "LIU1840135132", "demo");
         LoginView lg = new LoginView();
     }
 }

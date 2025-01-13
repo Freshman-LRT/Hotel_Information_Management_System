@@ -3,7 +3,6 @@ package com.hotel0.view;
 import com.hotel0.bean.Book;
 import com.hotel0.bean.Hotel;
 import com.hotel0.bean.Room;
-import com.hotel0.dao.AdminDao;
 import com.hotel0.dao.BookDao;
 import com.hotel0.dao.HotelDao;
 import com.hotel0.dao.RoomDao;
@@ -24,7 +23,6 @@ public class ManageView {
 	private JTextField searchField;
 	private JTable hotelTable;
 	private JTable roomTable;
-
 
 	public ManageView() {
 		initialize();
@@ -216,8 +214,7 @@ public class ManageView {
 					hotelNameField.getText(),
 					hotelAddressField.getText(),
 					hotelTelField.getText(),
-					hotelRatingField.getText()
-			);
+					hotelRatingField.getText());
 
 			boolean isSuccess = HotelDao.updateHotel(hotel);
 			if (isSuccess) {
@@ -253,8 +250,7 @@ public class ManageView {
 					roomTypeField.getText(),
 					Double.parseDouble(priceField.getText()),
 					statusField.getText(),
-					Integer.parseInt(capacityField.getText())
-			);
+					Integer.parseInt(capacityField.getText()));
 
 			boolean isSuccess = RoomDao.updateRoom(room);
 			if (isSuccess) {
@@ -277,7 +273,7 @@ public class ManageView {
 		hotelModel.addColumn("酒店评分");
 
 		for (Hotel hotel : hotels) {
-			hotelModel.addRow(new Object[]{
+			hotelModel.addRow(new Object[] {
 					hotel.getHotelId(),
 					hotel.getHotelName(),
 					hotel.getHotelAddress(),
@@ -300,7 +296,7 @@ public class ManageView {
 		roomModel.addColumn("可住人数");
 
 		for (Room room : rooms) {
-			roomModel.addRow(new Object[]{
+			roomModel.addRow(new Object[] {
 					room.getRoomId(),
 					room.getHotelId(),
 					room.getRoomType(),
@@ -335,7 +331,7 @@ public class ManageView {
 			Hotel hotel = HotelDao.getHotelById(book.getHotelId());
 			Room room = RoomDao.getRoomById(book.getRoomId());
 			if (hotel != null && room != null) {
-				orderModel.addRow(new Object[]{
+				orderModel.addRow(new Object[] {
 						book.getBookId(),
 						hotel.getHotelName(),
 						room.getRoomType(),
@@ -374,7 +370,8 @@ public class ManageView {
 		if (hotelId != null && !hotelId.isEmpty()) {
 			int roomCount = HotelDao.getRoomCountByHotelId(hotelId);
 			if (roomCount >= 0) {
-				JOptionPane.showMessageDialog(frame, "酒店 " + hotelId + " 的房间数为: " + roomCount, "房间数", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(frame, "酒店 " + hotelId + " 的房间数为: " + roomCount, "房间数",
+						JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(frame, "获取房间数失败！", "错误", JOptionPane.ERROR_MESSAGE);
 			}
@@ -408,12 +405,11 @@ public class ManageView {
 		model.addColumn("入住时间");
 		model.addColumn("退房时间");
 
-
 		for (Book book : books) {
 			Hotel hotel = HotelDao.getHotelById(book.getHotelId());
 			Room room = RoomDao.getRoomById(book.getRoomId());
 			if (hotel != null && room != null) {
-				model.addRow(new Object[]{
+				model.addRow(new Object[] {
 						book.getBookId(),
 						room.getRoomId(),
 						hotel.getHotelName(),
